@@ -1,7 +1,7 @@
 console.log("Sanity Check: JS is working!");
 
 
-
+var loser;
 $(document).ready(function(){
 
 
@@ -19,12 +19,6 @@ var getLoser = function() {
 	var publicFeed = $("#upload"); 
 
 
-
-	console.log('playerOneName:', playerOneName);
-	console.log(playerOneChoice);
-	console.log(playerTwoChoice);
-	console.log(playerOneChoice + playerTwoChoice);
-
 	if (playerOneChoice + playerTwoChoice == playerTwoOdds){
 		loser = playerOneName;
 	}
@@ -33,12 +27,12 @@ var getLoser = function() {
 		console.log(playerTwoName);
 	}
 
-	else if (playerTwoOdds == 2 && playerOneChoice == 1 &&playerTwoChoice == 2) {
-		loser = playerOneName;
+	else if (playerTwoOdds == 2 && playerOneChoice == 1 && playerTwoChoice == 2) {
+		loser = $playerOneName;
 
 	}
 
-	else if (playerTwoOdds == 2 && playerOneChoice == 2 &&playerTwoChoice == 1) {
+	else if (playerTwoOdds == 2 && playerOneChoice == 2 && playerTwoChoice == 1) {
 		loser = playerOneName;
 
 	}
@@ -46,36 +40,58 @@ var getLoser = function() {
 		loser = "tie";
 	}
 	
-	console.log(loser);
 	return loser;
 
 };
 
+
+
+
+
 var playButton = $("#play-the-game");
 
-playButton.click(function(){
-
-var playerOneName = $("#player-one-input").val();
-var playerTwoName = $("#player-two-input").val();
-var playerOneDare = $("#dare").val(); 	
-var playerOneLoses = (playerOneName + " loses to" + playerTwoName + " and has to" + playerOneDare);
-var playerTwoLoses = (playerTwoName + " loses to" + playerOneName + " and has to" + playerOneDare);
-
-
-
-
+playButton.click(function() {
 	getLoser();
-	console.log(playerOneLoses);
-	console.log(playerOneName);
-/*	
+
+	var oneName = document.getElementById("player-one-input").value;
+	var twoName = document.getElementById("player-two-input").value;
+	var dare = document.getElementById("dare").value;
+	var playerOneName = $("#player-one-input").val();
+	var playerTwoName = $("#player-two-input").val();
+	var playerOneDare = $("#dare").val();
+	
+
+	$("#loserOne").html(oneName + " loses to " + twoName + " and has to " + dare);
+	
+	$("#loserTwo").html(twoName + " loses to " + oneName + " and has to " + dare);
+	
+	console.log(loser);
+	if (loser = playerOneName) {
+		$("#loserOne").show();
+	}
+
+	else {
+		$("#loserTwo").show();
+	}
+
+
+
+});
+
+
+});
+
+
+
+/*
 	if (loser = playerOneName) {
 		$(playerOneLoses).show('slow', function() {
 		}
 	}
 
-*/
+	*/
 
-});
+
 
 
 
@@ -132,6 +148,6 @@ var playerTwoLoses = (playerTwoName + " loses to" + playerOneName + " and has to
 	*/
 
 
-});
+
 
 
